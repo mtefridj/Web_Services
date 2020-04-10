@@ -96,7 +96,7 @@
 
 			$.ajax({url:url, dataType:"jsonp"}).then(function(data) {
         //console.log(data.location);
-        var location = data.location.name
+        var location = data.location.name;
       	var header = document.getElementById('heading');
         document.getElementById('heading').innerHTML = header.innerHTML + ' for ' + location;
         console.log(data.current.weather_icons);
@@ -175,31 +175,32 @@
 					<Hint2 - To add the cards to the HTML> - Make sure to use string concatenation to add the html code for the daily weather cards.  This should
 					be set to the innerHTML for the 5_day_forecast.
 				*/
-        var first_day = getKey(1);
-        console.log(dayOfWeek);
-        var overall_card = document.getElementById('5_day_forecast');
-        var new_card = document.createElement('div');
-        new_card.setAttribute('class', 'card');
-        new_card.style.width = '20%';
-        var card_body = document.createElement('div');
-        card_body.class = 'card-body';
-        overall_card.appendChild(new_card);
-        var h5_dayweek = document.createElement('h5');
-        h5_dayweek.class = 'card-title';
-        h5_dayweek.innerHTML = dayOfWeek;
-        card_body.appendChild(h5_dayweek);
-        var p_tag = document.createElement('p');
-        p_tag.class = 'card-text';
-        var high_temp = getFarenheitTemp(first_day.maxtemp);
-        var low_temp = getFarenheitTemp(first_day.mintemp);
-        p_tag.innerHTML = 'High: ' + high_temp + "<br />" +
-        'Low: ' + low_temp +"<br />"  + 
-        'Sunrise: ' + first_day.astro.sunrise + "<br />" + 
-        'Sunset: ' + first_day.astro.sunset;
-        card_body.appendChild(p_tag);
-        new_card.appendChild(card_body);
+        for (var i = 1; i <= 5; i++){
+          console.log(i);
+          var first_day = getKey(i);
+          var overall_card = document.getElementById('5_day_forecast');
+          var new_card = document.createElement('div');
+          new_card.setAttribute('class', 'card');
+          new_card.style.width = '20%';
+          var card_body = document.createElement('div');
+          card_body.class = 'card-body';
+          overall_card.appendChild(new_card);
+          var h5_dayweek = document.createElement('h5');
+          h5_dayweek.class = 'card-title';
+          h5_dayweek.innerHTML = dayOfWeek;
+          card_body.appendChild(h5_dayweek);
+          var p_tag = document.createElement('p');
+          p_tag.class = 'card-text';
+          var high_temp = getFarenheitTemp(first_day.maxtemp);
+          var low_temp = getFarenheitTemp(first_day.mintemp);
+          p_tag.innerHTML = 'High: ' + high_temp + "<br />" +
+          'Low: ' + low_temp +"<br />"  + 
+          'Sunrise: ' + first_day.astro.sunrise + "<br />" + 
+          'Sunset: ' + first_day.astro.sunset;
+          card_body.appendChild(p_tag);
+          new_card.appendChild(card_body);
 
-
+        }
 			})
 		})
  	</script>
